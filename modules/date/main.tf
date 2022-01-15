@@ -4,14 +4,18 @@ resource "null_resource" "date" {
     always_run = "${timestamp()}"
   }
 
-
   provisioner "local-exec" {
     command = "date +%s > ${path.module}/file.txt"
     interpreter = ["bash", "-c"]
   }
 }
 
+data "local_file" "read_file" {
+  filename = "${path.module}/file.txt"
+  depends_on = [null_resource.date]
+}
+
 
 output "date" {
-    value = file("${path.module}/file.txt")
+    value = data.local_file.read_file.content
 }
