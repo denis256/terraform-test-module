@@ -6,7 +6,7 @@ resource "null_resource" "date" {
 
 
   provisioner "local-exec" {
-    command = "date > ${path.module}/file.txt"
+    command = "date +%s > ${path.module}/file.txt"
     interpreter = ["bash", "-c"]
   }
 }
