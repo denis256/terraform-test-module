@@ -20,6 +20,6 @@ variable "enabled" {}
 resource "helm_release" "karpenter_config" {
   count            = var.enabled ? 1 : 0
   name             = "karpenter-config"
-  chart            = "./karpenter-config"
+  chart            = "${path.module}/karpenter-config"
 }
 
