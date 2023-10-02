@@ -1,9 +1,9 @@
 variable file_path {
-  default = "."
+  default = "./file.txt"
 }
 
 resource "local_file" "file1" {
   content  = "test file content with path"
-  filename = "${var.file_path}/file.txt"
+  filename = var.file_path
 }
 
